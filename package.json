@@ -1,0 +1,19 @@
+{
+  "name": "themoviedb-api-rest-app",
+  "version": "1.0.0",
+  "description": "Application that utilizes JavaScript to seamlessly connect with The Movie Database (TMDb) API, delivering comprehensive movie information in an intuitive and user-friendly interface. Explore, discover, and enjoy a vast collection of movies effortlessly.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HaroldZS/themoviedb-api-rest-app.git"
+  },
+  "author": "HaroldZS",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HaroldZS/themoviedb-api-rest-app/issues"
+  },
+  "homepage": "https://github.com/HaroldZS/themoviedb-api-rest-app#readme"
+}
