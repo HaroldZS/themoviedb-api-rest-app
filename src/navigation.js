@@ -19,6 +19,8 @@ function navigator() {
   } else {
     homePage();
   }
+
+  window.scroll(0, 0);
 }
 
 function trendsPage() {
@@ -67,7 +69,7 @@ function movieDetailsPage() {
 }
 
 function categoriesPage() {
-  window.scroll(0,0);
+  window.scroll(0, 0);
   headerSection.classList.remove("header-container--long");
   headerSection.style.background = "";
   arrowBtn.classList.remove("inactive");
