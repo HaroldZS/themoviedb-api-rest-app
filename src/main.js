@@ -47,11 +47,19 @@ function createMovies(
       );
     });
 
+    const movieBtn = document.createElement("button");
+    movieBtn.classList.add("movie-btn");
+    movieBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      movieBtn.classList.toggle("movie-btn--liked");
+    });
+
     if (lazyLoad) {
       lazyLoader.observe(movieImg);
     }
 
     movieContainer.appendChild(movieImg);
+    movieContainer.appendChild(movieBtn);
     container.appendChild(movieContainer);
   });
 }
