@@ -13,7 +13,6 @@ const lazyLoader = new IntersectionObserver((entries) => {
     if (entry.isIntersecting) {
       const url = entry.target.getAttribute("data-img");
       entry.target.setAttribute("src", url);
-      console.log(url);
     }
   });
 });
@@ -122,32 +121,33 @@ async function getTrendingMovies() {
     clean: true,
   });
 
-  const btnLoadMore = document.createElement("button");
-  btnLoadMore.innerText = "Load more";
-  btnLoadMore.addEventListener("click", getPaginatedTrendingMovies);
-  genericSection.appendChild(btnLoadMore);
+  // const btnLoadMore = document.createElement("button");
+  // btnLoadMore.innerText = "Load more";
+  // btnLoadMore.addEventListener("click", getPaginatedTrendingMovies);
+  // genericSection.appendChild(btnLoadMore);
 }
 
-let page = 1;
-
 async function getPaginatedTrendingMovies() {
-  page++;
-  const { data } = await api("trending/movie/day", {
-    params: {
-      page,
-    },
-  });
-  const movies = data.results;
-  createMovies(movies, genericSection, {
-    lazyLoad: true,
-    clean: false,
-  });
+  const { scrollTop, scrollHeight } = document.documentElement;
+  const isScrollBottom = scrollTop + scrollHeight >= scrollHeight - 15;
 
-  const btnLoadMore = document.createElement('button');
-  btnLoadMore.innerText = 'Cargar más';
-  btnLoadMore.addEventListener('click', getPaginatedTrendingMovies);
-  genericSection.appendChild(btnLoadMore);
-
+  if (isScrollBottom) {
+    page++;
+    const { data } = await api("trending/movie/day", {
+      params: {
+        page,
+      },
+    });
+    const movies = data.results;
+    createMovies(movies, genericSection, {
+      lazyLoad: true,
+      clean: false,
+    });
+  }
+  // const btnLoadMore = document.createElement("button");
+  // btnLoadMore.innerText = "Cargar más";
+  // btnLoadMore.addEventListener("click", getPaginatedTrendingMovies);
+  // genericSection.appendChild(btnLoadMore);
 }
 
 async function getMovieById(id) {
