@@ -8,6 +8,21 @@ const api = axios.create({
   },
 });
 
+function likedMovieList() {
+  const item = JSON.parse(localStorage.getItem("liked_movies"));
+  return item ? item : {};
+}
+
+function likeMovie(movie) {
+  const likedMovies = likedMovieList();
+  if (likedMovies[movie.id]) {
+    delete likedMovies[movie.id];
+  } else {
+    likedMovies[movie.id] = movie;
+  }
+  localStorage.setItem("liked_movies", JSON.stringify(likedMovies));
+}
+
 const lazyLoader = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
@@ -52,6 +67,7 @@ function createMovies(
     movieBtn.addEventListener("click", (e) => {
       e.stopPropagation();
       movieBtn.classList.toggle("movie-btn--liked");
+      likeMovie(movie);
     });
 
     if (lazyLoad) {
