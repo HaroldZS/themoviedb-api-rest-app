@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { HashRouter, Route, Routes } from "react-router-dom";
+import { HomePage } from "./routes/HomePage/HomePage";
+import { SearchMoviePage } from "./routes/SearchMoviePage/SearchMoviePage";
+import { MovieDetailPage } from "./routes/MovieDetailPage/MovieDetailPage";
+import { TrendsPage } from "./routes/TrendsPage/TrendsPage";
+import { CategoryPage } from "./routes/CategoryPage/CategoryPage";
+import { NotFoundPage } from "./routes/NotFoundPage/NotFoundPage";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <HashRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/search" element={<SearchMoviePage />} />
+        <Route path="/movies/:movieId" element={<MovieDetailPage />} />
+        <Route path="/trends" element={<TrendsPage />} />
+        <Route path="/categories/:categoryId" element={<CategoryPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </HashRouter>
   );
 }
 
