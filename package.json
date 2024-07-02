@@ -1,19 +1,38 @@
 {
-  "name": "themoviedb-api-rest-app",
-  "version": "1.0.0",
-  "description": "Application that utilizes JavaScript to seamlessly connect with The Movie Database (TMDb) API, delivering comprehensive movie information in an intuitive and user-friendly interface. Explore, discover, and enjoy a vast collection of movies effortlessly.",
-  "main": "index.html",
+  "name": "the-moviedb-api-rest-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/HaroldZS/themoviedb-api-rest-app.git"
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
-  "author": "HaroldZS",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/HaroldZS/themoviedb-api-rest-app/issues"
-  },
-  "homepage": "https://github.com/HaroldZS/themoviedb-api-rest-app#readme"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
