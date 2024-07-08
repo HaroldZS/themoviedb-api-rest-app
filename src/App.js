@@ -1,4 +1,3 @@
-import "./App.css";
 import { HashRouter, Route, Routes } from "react-router-dom";
 import { HomePage } from "./routes/HomePage/HomePage";
 import { SearchMoviePage } from "./routes/SearchMoviePage/SearchMoviePage";
