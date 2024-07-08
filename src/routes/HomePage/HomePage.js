@@ -4,9 +4,13 @@ import { TrendingPreview } from "../../components/TrendingPreview";
 import { CategoriesPreview } from "../../components/CategoriesPreview";
 import { LikedMovies } from "../../components/LikedMovies";
 import { Footer } from "../../components/Footer";
+import { useFetch } from "../../hook/useFetch";
 import "./HomePage.css";
 
-function HomePage() {
+async function HomePage() {
+  const { data } = useFetch("trending/movie/day");
+  console.log(data);
+
   return (
     <>
       <Header />
