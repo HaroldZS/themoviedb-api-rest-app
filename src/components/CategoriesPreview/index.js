@@ -1,7 +1,8 @@
 import React from "react";
 import "./CategoriesPreview.css";
 
-function CategoriesPreview() {
+function CategoriesPreview({ categories }) {
+  console.log(categories);
   return (
     <section id="categoriesPreview" class="categoriesPreview-container">
       <h2 class="categoriesPreview-title">Categories</h2>

@@ -4,18 +4,17 @@ import { TrendingPreview } from "../../components/TrendingPreview";
 import { CategoriesPreview } from "../../components/CategoriesPreview";
 import { LikedMovies } from "../../components/LikedMovies";
 import { Footer } from "../../components/Footer";
-import { useFetch } from "../../hook/useFetch";
+import { useTMDBApi } from "../../hook/useTMDBApi";
 import "./HomePage.css";
 
-async function HomePage() {
-  const { data } = useFetch("trending/movie/day");
-  console.log(data);
+function HomePage() {
+  const { data: categoryData } = useTMDBApi("genre/movie/list");
 
   return (
     <>
       <Header />
       <TrendingPreview />
-      <CategoriesPreview />
+      <CategoriesPreview categories={categoryData.genres} />
       <LikedMovies />
       <Footer />
     </>
