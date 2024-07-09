@@ -2,15 +2,28 @@ import React from "react";
 import "./CategoriesPreview.css";
 
 function CategoriesPreview({ categories }) {
-  console.log(categories);
   return (
-    <section id="categoriesPreview" class="categoriesPreview-container">
-      <h2 class="categoriesPreview-title">Categories</h2>
+    <section id="categoriesPreview" className="categoriesPreview-container">
+      <h2 className="categoriesPreview-title">Categories</h2>
 
-      <article class="categoriesPreview-list">
-        <div class="category-container category-container--loading"></div>
-        <div class="category-container category-container--loading"></div>
-        <div class="category-container category-container--loading"></div>
+      <article className="categoriesPreview-list">
+        {categories ? (
+          <>
+            {categories.map((category) => (
+              <div className="category-container">
+                <h3 className="category-title" id={`id${category.id}`}>
+                  {category.name}
+                </h3>
+              </div>
+            ))}
+          </>
+        ) : (
+          <>
+            <div className="category-container category-container--loading"></div>
+            <div className="category-container category-container--loading"></div>
+            <div className="category-container category-container--loading"></div>
+          </>
+        )}
       </article>
     </section>
   );
