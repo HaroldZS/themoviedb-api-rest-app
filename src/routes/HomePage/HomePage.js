@@ -14,7 +14,7 @@ function HomePage() {
     <>
       <Header />
       <TrendingPreview />
-      <CategoriesPreview categories={categoryData.genres} />
+      <CategoriesPreview categories={categoryData.genres}/>
       <LikedMovies />
       <Footer />
     </>
