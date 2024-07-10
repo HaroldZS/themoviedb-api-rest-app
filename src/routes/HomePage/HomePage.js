@@ -8,13 +8,14 @@ import { useTMDBApi } from "../../hook/useTMDBApi";
 import "./HomePage.css";
 
 function HomePage() {
-  const { data: categoryData } = useTMDBApi("genre/movie/list");
+  const { data: categoryPreviewData } = useTMDBApi("genre/movie/list");
+  const { data: trendingPreviewData } = useTMDBApi("trending/movie/day");
 
   return (
     <>
       <Header />
-      <TrendingPreview />
-      <CategoriesPreview categories={categoryData.genres}/>
+      <TrendingPreview movies={trendingPreviewData.results} />
+      <CategoriesPreview categories={categoryPreviewData.genres} />
       <LikedMovies />
       <Footer />
     </>
