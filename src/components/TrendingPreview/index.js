@@ -18,6 +18,7 @@ function TrendingPreview({ movies }) {
                   src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
                   className="movie-img"
                   alt={movie.title}
+                  id={`id${movie.id}`}
                 />
               </div>
             ))}
