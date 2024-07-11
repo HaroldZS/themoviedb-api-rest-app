@@ -292,7 +292,7 @@ footer {
 
 /* Navigation */
 .inactive {
-  display: none;
+  display: none !important;
 }
 
 @keyframes loading-skeleton {

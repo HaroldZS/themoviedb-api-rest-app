@@ -1,8 +1,9 @@
 import React from "react";
 import "./MovieDetailPage.css";
+import { Header } from "../../components/Header";
 
 function MovieDetailPage() {
-  return <div>MovieDetailPage</div>;
+  return <Header />;
 }
 
 export { MovieDetailPage };
