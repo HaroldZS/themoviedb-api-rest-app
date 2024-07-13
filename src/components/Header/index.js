@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Header.css";
 import { useLocation, useNavigate } from "react-router-dom";
 
 function Header({ moviePoster = null }) {
   const location = useLocation();
   const navigate = useNavigate();
+  const [query, setQuery] = useState("");
 
   const isMovieDetailPage = location.pathname.startsWith("/movies/");
   const isTrendsPage = location.pathname.startsWith("/trends");
@@ -14,6 +15,15 @@ function Header({ moviePoster = null }) {
 
   const isCategeryOrTrendPage = isTrendsPage || isCategoryPage;
   const isSearchOrHomePage = isSearchPage || isHomePage;
+
+  const setQueryValue = (e) => {
+    setQuery(e.target.value);
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    navigate(`/search?query=${query}`);
+  };
 
   return (
     <header
@@ -47,8 +57,14 @@ function Header({ moviePoster = null }) {
       <form
         id="searchForm"
         className={`header-searchForm ${!isSearchOrHomePage && "inactive"}`}
+        onSubmit={onSubmit}
       >
-        <input type="text" placeholder="Avengers" />
+        <input
+          type="text"
+          placeholder="Avengers"
+          value={query}
+          onChange={setQueryValue}
+        />
         <button id="searchBtn">🔍</button>
       </form>
     </header>
