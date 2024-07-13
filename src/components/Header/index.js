@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import "./Header.css";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
 function Header({ moviePoster = null }) {
   const location = useLocation();
   const navigate = useNavigate();
   const [query, setQuery] = useState("");
+  const [searchParams] = useSearchParams();
+  const category = searchParams.get("category");
 
   const isMovieDetailPage = location.pathname.startsWith("/movies/");
   const isTrendsPage = location.pathname.startsWith("/trends");
@@ -51,7 +53,7 @@ function Header({ moviePoster = null }) {
           !isCategeryOrTrendPage && "inactive"
         }`}
       >
-        Action
+        {category}
       </h1>
 
       <form
