@@ -47,6 +47,7 @@
   white-space: nowrap;
   width: calc(100vw - 24px);
   padding-bottom: 16px;
+  height: -webkit-fill-available;
 }
 
 .relatedMovies-scrollContainer .movie-container {
