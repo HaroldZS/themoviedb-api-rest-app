@@ -1,10 +1,7 @@
 import React from "react";
-import { useLocalStorage } from "../../hook/useLocalStorage";
 import "./LikedMovies.css";
 
-function LikedMovies() {
-  const { item: likedMovies } = useLocalStorage("liked_movies", []);
-
+function LikedMovies({ likedMovies }) {
   return (
     <section id="liked" className="liked-container">
       <div className="liked-header">
