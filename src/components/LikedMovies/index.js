@@ -1,7 +1,9 @@
 import React from "react";
 import "./LikedMovies.css";
 
-function LikedMovies({ likedMovies }) {
+function LikedMovies({ likeMovie, likedMovies }) {
+  const likedMoviesIds = likedMovies.map((movie) => movie.id);
+
   return (
     <section id="liked" className="liked-container">
       <div className="liked-header">
@@ -19,6 +21,12 @@ function LikedMovies({ likedMovies }) {
                   alt={movie.title}
                   id={`id${movie.id}`}
                 />
+                <button
+                  className={`movie-btn ${
+                    likedMoviesIds.includes(movie.id) && "movie-btn--liked"
+                  }`}
+                  onClick={(e) => likeMovie(e, movie)}
+                ></button>
               </div>
             ))}
           </>

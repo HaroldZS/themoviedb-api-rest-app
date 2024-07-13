@@ -13,14 +13,26 @@ function HomePage() {
     useTMDBApi("genre/movie/list");
   const { data: trendingPreviewData, loading: loadingTrending } =
     useTMDBApi("trending/movie/day");
-  const { item: likedMovies, addItem: addLikedMovie } = useLocalStorage(
-    "liked_movies",
-    []
-  );
+  const {
+    item: likedMovies,
+    addItem: addLikedMovie,
+    setStorageItem: setLikedMovie,
+  } = useLocalStorage("liked_movies", []);
 
   const likeMovie = (e, movie) => {
     e.stopPropagation();
-    addLikedMovie(movie);
+    const likedMovieIndex = likedMovies.findIndex(
+      (likedMovie) => likedMovie.id === movie.id
+    );
+
+    if (likedMovieIndex !== -1) {
+      const newLikedMovies = likedMovies.filter(
+        (likedMovie) => likedMovie.id !== movie.id
+      );
+      setLikedMovie(newLikedMovies);
+    } else {
+      addLikedMovie(movie);
+    }
   };
 
   return (
@@ -34,7 +46,7 @@ function HomePage() {
       <CategoriesPreview
         categories={loadingCategories ? null : categoryPreviewData.genres}
       />
-      <LikedMovies likedMovies={likedMovies} />
+      <LikedMovies likeMovie={likeMovie} likedMovies={likedMovies} />
       <Footer />
     </>
   );
