@@ -1,7 +1,9 @@
 import React from "react";
 import "./GenericList.css";
+import { useNavigate } from "react-router-dom";
 
 function GenericList({ movies, likeMovie, likedMovies }) {
+  const navigate = useNavigate();
   const likedMoviesIds = likedMovies.map((movie) => movie.id);
 
   return (
@@ -9,7 +11,11 @@ function GenericList({ movies, likeMovie, likedMovies }) {
       {movies ? (
         <>
           {movies.map((movie) => (
-            <div className="movie-container" key={movie.id}>
+            <div
+              className="movie-container"
+              key={movie.id}
+              onClick={() => navigate(`movies/${movie.id}`)}
+            >
               <img
                 src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
                 className="movie-img"

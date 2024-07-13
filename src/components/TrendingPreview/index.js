@@ -10,14 +10,23 @@ function TrendingPreview({ movies, likeMovie, likedMovies }) {
     <section id="trendingPreview" className="trendingPreview-container">
       <div className="trendingPreview-header">
         <h2 className="trendingPreview-title">Trends</h2>
-        <button className="trendingPreview-btn" onClick={() => navigate("trends")}>Watch more</button>
+        <button
+          className="trendingPreview-btn"
+          onClick={() => navigate("trends")}
+        >
+          Watch more
+        </button>
       </div>
 
       <article className="trendingPreview-movieList">
         {movies ? (
           <>
             {movies.map((movie) => (
-              <div className="movie-container" key={movie.id}>
+              <div
+                className="movie-container"
+                key={movie.id}
+                onClick={() => navigate(`movies/${movie.id}`)}
+              >
                 <img
                   src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
                   className="movie-img"

@@ -1,7 +1,9 @@
 import React from "react";
 import "./LikedMovies.css";
+import { useNavigate } from "react-router-dom";
 
 function LikedMovies({ likeMovie, likedMovies }) {
+  const navigate = useNavigate();
   const likedMoviesIds = likedMovies.map((movie) => movie.id);
 
   return (
@@ -14,7 +16,11 @@ function LikedMovies({ likeMovie, likedMovies }) {
         {likedMovies.length > 0 ? (
           <>
             {likedMovies.map((movie) => (
-              <div className="movie-container">
+              <div
+                className="movie-container"
+                key={movie.id}
+                onClick={() => navigate(`movies/${movie.id}`)}
+              >
                 <img
                   src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
                   className="movie-img"

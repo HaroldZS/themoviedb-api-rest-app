@@ -3,7 +3,12 @@ import "./MovieDetailPage.css";
 import { Header } from "../../components/Header";
 
 function MovieDetailPage() {
-  return <Header />;
+  // return (
+  //   <>
+  //     <Header />
+  //     <MovieDetailPage />
+  //   </>
+  // );
 }
 
 export { MovieDetailPage };
