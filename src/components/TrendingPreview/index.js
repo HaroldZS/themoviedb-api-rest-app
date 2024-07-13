@@ -1,14 +1,16 @@
 import React from "react";
 import "./TrendingPreview.css";
+import { useNavigate } from "react-router-dom";
 
 function TrendingPreview({ movies, likeMovie, likedMovies }) {
+  const navigate = useNavigate();
   const likedMoviesIds = likedMovies.map((movie) => movie.id);
 
   return (
     <section id="trendingPreview" className="trendingPreview-container">
       <div className="trendingPreview-header">
         <h2 className="trendingPreview-title">Trends</h2>
-        <button className="trendingPreview-btn">Watch more</button>
+        <button className="trendingPreview-btn" onClick={() => navigate("trends")}>Watch more</button>
       </div>
 
       <article className="trendingPreview-movieList">

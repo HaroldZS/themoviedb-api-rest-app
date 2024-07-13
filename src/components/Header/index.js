@@ -1,9 +1,10 @@
 import React from "react";
 import "./Header.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function Header() {
   const location = useLocation();
+  const navigate = useNavigate();
   const isMovieDetailPage = location.pathname.startsWith("/movies/");
   const isHomePage = location.pathname === "/";
   const isCategeryOrTrendPage =
@@ -22,6 +23,7 @@ function Header() {
         className={`header-arrow ${isHomePage && "inactive"} ${
           isMovieDetailPage && "header-arrow--white"
         }`}
+        onClick={() => navigate(-1)}
       >
         &lt;
       </span>
@@ -34,7 +36,10 @@ function Header() {
         Action
       </h1>
 
-      <form id="searchForm" className={`header-searchForm ${!isSearchOrHomePage && "inactive"}`}>
+      <form
+        id="searchForm"
+        className={`header-searchForm ${!isSearchOrHomePage && "inactive"}`}
+      >
         <input type="text" placeholder="Avengers" />
         <button id="searchBtn">🔍</button>
       </form>
