@@ -12,7 +12,7 @@ function TrendingPreview({ movies, likeMovie, likedMovies }) {
         <h2 className="trendingPreview-title">Trends</h2>
         <button
           className="trendingPreview-btn"
-          onClick={() => navigate("trends")}
+          onClick={() => navigate("/trends")}
         >
           Watch more
         </button>
@@ -25,7 +25,7 @@ function TrendingPreview({ movies, likeMovie, likedMovies }) {
               <div
                 className="movie-container"
                 key={movie.id}
-                onClick={() => navigate(`movies/${movie.id}`)}
+                onClick={() => navigate(`/movies/${movie.id}`)}
               >
                 <img
                   src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}

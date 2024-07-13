@@ -19,7 +19,7 @@ function CategoriesPreview({ categories }) {
                   id={`id${category.id}`}
                   onClick={() =>
                     navigate(
-                      `categories/${category.id}?category=${category.name}`
+                      `/categories/${category.id}?category=${category.name}`
                     )
                   }
                 >
