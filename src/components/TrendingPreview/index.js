@@ -1,38 +1,12 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import "./TrendingPreview.css";
 import { useNavigate } from "react-router-dom";
+import { useLazyLoading } from "../../hook/useLazyLoading";
 
 function TrendingPreview({ movies, likeMovie, likedMovies }) {
   const navigate = useNavigate();
   const likedMoviesIds = likedMovies.map((movie) => movie.id);
-  const imgRefs = useRef([]);
-
-  useEffect(() => {
-    const lazyLoader = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const img = entry.target;
-          const url = img.getAttribute("data-src");
-          img.setAttribute("src", url);
-          lazyLoader.unobserve(img);
-        }
-      });
-    });
-
-    imgRefs.current.forEach((img) => {
-      if (img) {
-        lazyLoader.observe(img);
-      }
-    });
-
-    return () => {
-      imgRefs.current.forEach((img) => {
-        if (img) {
-          lazyLoader.unobserve(img);
-        }
-      });
-    };
-  }, [movies]);
+  const imgRefs = useLazyLoading(movies);
 
   return (
     <section id="trendingPreview" className="trendingPreview-container">
