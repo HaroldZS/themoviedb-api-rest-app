@@ -2,6 +2,7 @@ import React from "react";
 import "./MovieDetail.css";
 import { useNavigate } from "react-router-dom";
 import { MovieList } from "../MovieList";
+import { Category } from "../Category";
 
 function MovieDetail({
   movieData,
@@ -33,31 +34,7 @@ function MovieDetail({
         )}
 
         <article className="categories-list">
-          {categories ? (
-            <>
-              {categories.map((category) => (
-                <div className="category-container" key={category.id}>
-                  <h3
-                    className="category-title"
-                    id={`id${category.id}`}
-                    onClick={() =>
-                      navigate(
-                        `/categories/${category.id}?category=${category.name}`
-                      )
-                    }
-                  >
-                    {category.name}
-                  </h3>
-                </div>
-              ))}
-            </>
-          ) : (
-            <>
-              <div className="category-container category-container--loading"></div>
-              <div className="category-container category-container--loading"></div>
-              <div className="category-container category-container--loading"></div>
-            </>
-          )}
+          <Category categories={categories} />
         </article>
 
         <article className="relatedMovies-container">
