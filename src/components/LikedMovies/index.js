@@ -1,11 +1,8 @@
 import React from "react";
 import "./LikedMovies.css";
-import { useNavigate } from "react-router-dom";
+import { MovieList } from "../MovieList";
 
 function LikedMovies({ likeMovie, likedMovies }) {
-  const navigate = useNavigate();
-  const likedMoviesIds = likedMovies.map((movie) => movie.id);
-
   return (
     <section id="liked" className="liked-container">
       <div className="liked-header">
@@ -13,53 +10,25 @@ function LikedMovies({ likeMovie, likedMovies }) {
       </div>
 
       <article className="liked-movieList">
-        {likedMovies.length > 0 ? (
-          <>
-            {likedMovies.map((movie) => (
-              <div
-                className="movie-container"
-                key={movie.id}
-                onClick={() => navigate(`/movies/${movie.id}`)}
-              >
-                <img
-                  src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
-                  className="movie-img"
-                  alt={movie.title}
-                  id={`id${movie.id}`}
-                />
-                <button
-                  className={`movie-btn ${
-                    likedMoviesIds.includes(movie.id) && "movie-btn--liked"
-                  }`}
-                  onClick={(e) => likeMovie(e, movie)}
-                ></button>
-              </div>
-            ))}
-          </>
+        {likedMovies ? (
+          <MovieList
+            movies={likedMovies}
+            likeMovie={likeMovie}
+            likedMovies={likedMovies}
+          />
         ) : (
-          <>
-            <div className="movie-container">
-              <img
-                src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
-                className="movie-img"
-                alt="Nombre de la película"
-              />
-            </div>
-            <div className="movie-container">
-              <img
-                src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
-                className="movie-img"
-                alt="Nombre de la película"
-              />
-            </div>
-            <div className="movie-container">
-              <img
-                src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
-                className="movie-img"
-                alt="Nombre de la película"
-              />
-            </div>
-          </>
+          Array(3)
+            .fill()
+            .map((_, index) => (
+              <div class="movie-container">
+                <img
+                  key={index}
+                  src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
+                  class="movie-img"
+                  alt="Nombre de la película"
+                />
+              </div>
+            ))
         )}
       </article>
     </section>

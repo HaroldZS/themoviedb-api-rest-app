@@ -1,6 +1,7 @@
 import React from "react";
 import "./MovieDetail.css";
 import { useNavigate } from "react-router-dom";
+import { MovieList } from "../MovieList";
 
 function MovieDetail({
   movieData,
@@ -10,7 +11,6 @@ function MovieDetail({
   categories,
 }) {
   const navigate = useNavigate();
-  const likedMoviesIds = likedMovies.map((movie) => movie.id);
 
   return (
     <>
@@ -36,7 +36,7 @@ function MovieDetail({
           {categories ? (
             <>
               {categories.map((category) => (
-                <div className="category-container" id={category.id}>
+                <div className="category-container" key={category.id}>
                   <h3
                     className="category-title"
                     id={`id${category.id}`}
@@ -63,36 +63,11 @@ function MovieDetail({
         <article className="relatedMovies-container">
           <h2 className="relatedMovies-title">Related movies</h2>
           <div className="relatedMovies-scrollContainer">
-            {relatedMovies ? (
-              <>
-                {relatedMovies.map((movie) => (
-                  <div
-                    className="movie-container"
-                    key={movie.id}
-                    onClick={() => navigate(`/movies/${movie.id}`)}
-                  >
-                    <img
-                      src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
-                      className="movie-img"
-                      alt={movie.title}
-                      id={`id${movie.id}`}
-                    />
-                    <button
-                      className={`movie-btn ${
-                        likedMoviesIds.includes(movie.id) && "movie-btn--liked"
-                      }`}
-                      onClick={(e) => likeMovie(e, movie)}
-                    ></button>
-                  </div>
-                ))}
-              </>
-            ) : (
-              <>
-                <div className="movie-container movie-container--loading"></div>
-                <div className="movie-container movie-container--loading"></div>
-                <div className="movie-container movie-container--loading"></div>
-              </>
-            )}
+            <MovieList
+              movies={relatedMovies}
+              likeMovie={likeMovie}
+              likedMovies={likedMovies}
+            />
           </div>
         </article>
       </section>

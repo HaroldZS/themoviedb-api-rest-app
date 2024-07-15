@@ -46,7 +46,10 @@ function HomePage() {
       <CategoriesPreview
         categories={loadingCategories ? null : categoryPreviewData.genres}
       />
-      <LikedMovies likeMovie={likeMovie} likedMovies={likedMovies} />
+      <LikedMovies
+        likeMovie={likeMovie}
+        likedMovies={likedMovies.length > 0 ? likedMovies : null}
+      />
       <Footer />
     </>
   );

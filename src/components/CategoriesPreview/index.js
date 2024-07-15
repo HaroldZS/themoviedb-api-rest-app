@@ -13,7 +13,7 @@ function CategoriesPreview({ categories }) {
         {categories ? (
           <>
             {categories.map((category) => (
-              <div className="category-container" id={category.id}>
+              <div className="category-container" key={category.id}>
                 <h3
                   className="category-title"
                   id={`id${category.id}`}

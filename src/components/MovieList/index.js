@@ -5,7 +5,9 @@ import { Movie } from "../Movie";
 
 function MovieList({ movies, likeMovie, likedMovies }) {
   const navigate = useNavigate();
-  const likedMoviesIds = likedMovies.map((movie) => movie.id);
+  const likedMoviesIds = likedMovies
+    ? likedMovies.map((movie) => movie.id)
+    : [];
   const imgRefs = useLazyLoading(movies);
 
   return (
@@ -14,6 +16,7 @@ function MovieList({ movies, likeMovie, likedMovies }) {
         <>
           {movies.map((movie, index) => (
             <Movie
+              key={movie.id}
               movie={movie}
               index={index}
               navigate={navigate}
