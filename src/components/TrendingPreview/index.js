@@ -1,12 +1,10 @@
 import React from "react";
 import "./TrendingPreview.css";
 import { useNavigate } from "react-router-dom";
-import { useLazyLoading } from "../../hook/useLazyLoading";
+import { MovieList } from "../MovieList";
 
 function TrendingPreview({ movies, likeMovie, likedMovies }) {
   const navigate = useNavigate();
-  const likedMoviesIds = likedMovies.map((movie) => movie.id);
-  const imgRefs = useLazyLoading(movies);
 
   return (
     <section id="trendingPreview" className="trendingPreview-container">
@@ -21,36 +19,11 @@ function TrendingPreview({ movies, likeMovie, likedMovies }) {
       </div>
 
       <article className="trendingPreview-movieList">
-        {movies ? (
-          <>
-            {movies.map((movie, index) => (
-              <div
-                className="movie-container"
-                key={movie.id}
-                onClick={() => navigate(`/movies/${movie.id}`)}
-              >
-                <img
-                  data-src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
-                  className="movie-img"
-                  alt={movie.title}
-                  ref={(el) => (imgRefs.current[index] = el)}
-                />
-                <button
-                  className={`movie-btn ${
-                    likedMoviesIds.includes(movie.id) && "movie-btn--liked"
-                  }`}
-                  onClick={(e) => likeMovie(e, movie)}
-                ></button>
-              </div>
-            ))}
-          </>
-        ) : (
-          <>
-            <div className="movie-container movie-container--loading"></div>
-            <div className="movie-container movie-container--loading"></div>
-            <div className="movie-container movie-container--loading"></div>
-          </>
-        )}
+        <MovieList
+          movies={movies}
+          likeMovie={likeMovie}
+          likedMovies={likedMovies}
+        />
       </article>
     </section>
   );

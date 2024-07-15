@@ -8,7 +8,7 @@ const useLazyLoading = (items) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const img = entry.target;
-          const url = img.getAttribute("data-src");
+          const url = img.getAttribute("data-img");
           img.setAttribute("src", url);
           lazyLoader.unobserve(img);
         }
