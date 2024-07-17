@@ -5,7 +5,6 @@ import { useLocation, useSearchParams } from "react-router-dom";
 import { useTMDBApi } from "../../hook/useTMDBApi";
 import { GenericList } from "../../components/GenericList";
 import { useLocalStorage } from "../../hook/useLocalStorage";
-import { Observer } from "../../components/Observer";
 
 function SearchMoviePage() {
   const location = useLocation();
@@ -19,6 +18,11 @@ function SearchMoviePage() {
     loading: loadingSearchData,
     maxPage,
   } = useTMDBApi("search/movie", { query, page });
+
+  useEffect(() => {
+    setResults([]);
+    setPage(1);
+  }, [query, location.state]);
 
   useEffect(() => {
     if (searchData && searchData.results) {
@@ -49,22 +53,21 @@ function SearchMoviePage() {
   };
 
   const addNextPage = () => {
-    console.log({ page, maxPage });
-    setPage((prevPage) => prevPage + 1);
+    setPage(page + 1);
   };
 
   return (
     <>
       <Header />
-      {results.map((movies, index) => (
-        <GenericList
-          key={index}
-          movies={loadingSearchData ? null : movies}
-          likeMovie={likeMovie}
-          likedMovies={likedMovies}
-        />
-      ))}
-      {page <= maxPage && <Observer callback={addNextPage} />}
+      <GenericList
+        movies={results}
+        loading={loadingSearchData}
+        likeMovie={likeMovie}
+        likedMovies={likedMovies}
+        addNextPage={addNextPage}
+        page={page}
+        maxPage={maxPage}
+      />
     </>
   );
 }

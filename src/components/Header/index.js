@@ -4,10 +4,10 @@ import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
 function Header({ moviePoster = null }) {
   const location = useLocation();
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Asegúrate de que useNavigate esté correctamente importado
 
   const [searchValue, setSearchValue] = useState("");
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const category = searchParams.get("category");
   const searchQuery = searchParams.get("query");
 
@@ -17,28 +17,28 @@ function Header({ moviePoster = null }) {
   const isSearchPage = location.pathname.startsWith("/search");
   const isHomePage = location.pathname === "/";
 
-  const isCategeryOrTrendPage = isTrendsPage || isCategoryPage;
+  const isCategoryOrTrendPage = isTrendsPage || isCategoryPage;
   const isSearchOrHomePage = isSearchPage || isHomePage;
 
   const onSearchValueChange = ({ target: { value } }) => {
     setSearchValue(value);
-    setSearchParams({ query: value });
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log("navigating to:", searchValue);
     navigate(`/search?query=${searchValue}`, { state: searchValue });
-    window.location.reload();
   };
 
   useEffect(() => {
-    console.log("We have a change in searchValue", searchQuery);
     if (searchQuery) {
       setSearchValue(searchQuery);
     }
     // eslint-disable-next-line
   }, [searchQuery]);
+
+  const goBack = () => {
+    navigate(-1); // Esta es la forma correcta de usar navigate para ir hacia atrás
+  };
 
   return (
     <header
@@ -56,14 +56,14 @@ function Header({ moviePoster = null }) {
         className={`header-arrow ${isHomePage && "inactive"} ${
           isMovieDetailPage && "header-arrow--white"
         }`}
-        onClick={() => navigate(-1)}
+        onClick={goBack} // Llama a la función goBack en lugar de navigate(-1)
       >
         &lt;
       </span>
       <h1 className={`header-title ${!isHomePage && "inactive"}`}>Movies</h1>
       <h1
         className={`header-title header-title--categoryView ${
-          !isCategeryOrTrendPage && "inactive"
+          !isCategoryOrTrendPage && "inactive"
         }`}
       >
         {category}
@@ -72,6 +72,7 @@ function Header({ moviePoster = null }) {
       <form
         id="searchForm"
         className={`header-searchForm ${!isSearchOrHomePage && "inactive"}`}
+        onSubmit={onSubmit}
       >
         <input
           type="text"
@@ -79,7 +80,7 @@ function Header({ moviePoster = null }) {
           value={searchValue}
           onChange={onSearchValueChange}
         />
-        <button id="searchBtn" onClick={onSubmit}>
+        <button id="searchBtn" type="submit">
           🔍
         </button>
       </form>
