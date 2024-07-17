@@ -1,20 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./SearchMoviePage.css";
 import { Header } from "../../components/Header";
 import { useLocation, useSearchParams } from "react-router-dom";
 import { useTMDBApi } from "../../hook/useTMDBApi";
 import { GenericList } from "../../components/GenericList";
 import { useLocalStorage } from "../../hook/useLocalStorage";
+import { Observer } from "../../components/Observer";
 
 function SearchMoviePage() {
   const location = useLocation();
   const [searchParams] = useSearchParams();
   const query = location.state || searchParams.get("query");
+  const [page, setPage] = useState(1);
+  const [results, setResults] = useState([]);
 
-  const { data: searchData, loading: loadingSearchData } = useTMDBApi(
-    "search/movie",
-    { query }
-  );
+  const {
+    data: searchData,
+    loading: loadingSearchData,
+    maxPage,
+  } = useTMDBApi("search/movie", { query, page });
+
+  useEffect(() => {
+    if (searchData && searchData.results) {
+      setResults((prevResults) => [...prevResults, searchData.results]);
+    }
+  }, [searchData]);
 
   const {
     item: likedMovies,
@@ -38,16 +48,23 @@ function SearchMoviePage() {
     }
   };
 
-  
+  const addNextPage = () => {
+    console.log({ page, maxPage });
+    setPage((prevPage) => prevPage + 1);
+  };
 
   return (
     <>
       <Header />
-      <GenericList
-        movies={loadingSearchData ? null : searchData.results}
-        likeMovie={likeMovie}
-        likedMovies={likedMovies}
-      />
+      {results.map((movies, index) => (
+        <GenericList
+          key={index}
+          movies={loadingSearchData ? null : movies}
+          likeMovie={likeMovie}
+          likedMovies={likedMovies}
+        />
+      ))}
+      {page <= maxPage && <Observer callback={addNextPage} />}
     </>
   );
 }
