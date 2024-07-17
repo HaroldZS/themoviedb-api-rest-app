@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Header.css";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
 function Header({ moviePoster = null }) {
   const location = useLocation();
   const navigate = useNavigate();
-  const [query, setQuery] = useState("");
-  const [searchParams] = useSearchParams();
+
+  const [searchValue, setSearchValue] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
   const category = searchParams.get("category");
+  const searchQuery = searchParams.get("query");
 
   const isMovieDetailPage = location.pathname.startsWith("/movies/");
   const isTrendsPage = location.pathname.startsWith("/trends");
@@ -18,14 +20,25 @@ function Header({ moviePoster = null }) {
   const isCategeryOrTrendPage = isTrendsPage || isCategoryPage;
   const isSearchOrHomePage = isSearchPage || isHomePage;
 
-  const setQueryValue = (e) => {
-    setQuery(e.target.value);
+  const onSearchValueChange = ({ target: { value } }) => {
+    setSearchValue(value);
+    setSearchParams({ query: value });
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    navigate(`/search?query=${query}`);
+    console.log("navigating to:", searchValue);
+    navigate(`/search?query=${searchValue}`, { state: searchValue });
+    window.location.reload();
   };
+
+  useEffect(() => {
+    console.log("We have a change in searchValue", searchQuery);
+    if (searchQuery) {
+      setSearchValue(searchQuery);
+    }
+    // eslint-disable-next-line
+  }, [searchQuery]);
 
   return (
     <header
@@ -59,15 +72,16 @@ function Header({ moviePoster = null }) {
       <form
         id="searchForm"
         className={`header-searchForm ${!isSearchOrHomePage && "inactive"}`}
-        onSubmit={onSubmit}
       >
         <input
           type="text"
           placeholder="Avengers"
-          value={query}
-          onChange={setQueryValue}
+          value={searchValue}
+          onChange={onSearchValueChange}
         />
-        <button id="searchBtn">🔍</button>
+        <button id="searchBtn" onClick={onSubmit}>
+          🔍
+        </button>
       </form>
     </header>
   );

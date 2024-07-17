@@ -1,14 +1,15 @@
 import React from "react";
 import "./SearchMoviePage.css";
 import { Header } from "../../components/Header";
-import { useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 import { useTMDBApi } from "../../hook/useTMDBApi";
 import { GenericList } from "../../components/GenericList";
 import { useLocalStorage } from "../../hook/useLocalStorage";
 
 function SearchMoviePage() {
+  const location = useLocation();
   const [searchParams] = useSearchParams();
-  const query = searchParams.get("query");
+  const query = location.state || searchParams.get("query");
 
   const { data: searchData, loading: loadingSearchData } = useTMDBApi(
     "search/movie",
@@ -36,6 +37,8 @@ function SearchMoviePage() {
       addLikedMovie(movie);
     }
   };
+
+  
 
   return (
     <>
