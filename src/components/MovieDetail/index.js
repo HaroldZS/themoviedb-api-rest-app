@@ -1,6 +1,5 @@
 import React from "react";
 import "./MovieDetail.css";
-import { useNavigate } from "react-router-dom";
 import { MovieList } from "../MovieList";
 import { Category } from "../Category";
 
@@ -11,7 +10,6 @@ function MovieDetail({
   likedMovies,
   categories,
 }) {
-  const navigate = useNavigate();
 
   return (
     <>

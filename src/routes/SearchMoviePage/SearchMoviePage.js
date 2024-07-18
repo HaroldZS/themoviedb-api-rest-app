@@ -4,7 +4,7 @@ import { Header } from "../../components/Header";
 import { useLocation, useSearchParams } from "react-router-dom";
 import { useTMDBApi } from "../../hook/useTMDBApi";
 import { GenericList } from "../../components/GenericList";
-import { useLocalStorage } from "../../hook/useLocalStorage";
+import { useLikedMovies } from "../../hook/useLikedMovies";
 
 function SearchMoviePage() {
   const location = useLocation();
@@ -12,6 +12,7 @@ function SearchMoviePage() {
   const query = location.state || searchParams.get("query");
   const [page, setPage] = useState(1);
   const [results, setResults] = useState([]);
+  const { likedMovies, likeMovie } = useLikedMovies();
 
   const {
     data: searchData,
@@ -30,27 +31,6 @@ function SearchMoviePage() {
     }
   }, [searchData]);
 
-  const {
-    item: likedMovies,
-    addItem: addLikedMovie,
-    setStorageItem: setLikedMovie,
-  } = useLocalStorage("liked_movies", []);
-
-  const likeMovie = (e, movie) => {
-    e.stopPropagation();
-    const likedMovieIndex = likedMovies.findIndex(
-      (likedMovie) => likedMovie.id === movie.id
-    );
-
-    if (likedMovieIndex !== -1) {
-      const newLikedMovies = likedMovies.filter(
-        (likedMovie) => likedMovie.id !== movie.id
-      );
-      setLikedMovie(newLikedMovies);
-    } else {
-      addLikedMovie(movie);
-    }
-  };
 
   const addNextPage = () => {
     setPage(page + 1);

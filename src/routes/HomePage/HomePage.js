@@ -5,35 +5,15 @@ import { CategoriesPreview } from "../../components/CategoriesPreview";
 import { LikedMovies } from "../../components/LikedMovies";
 import { Footer } from "../../components/Footer";
 import { useTMDBApi } from "../../hook/useTMDBApi";
-import { useLocalStorage } from "../../hook/useLocalStorage";
+import { useLikedMovies } from "../../hook/useLikedMovies";
 import "./HomePage.css";
 
 function HomePage() {
+  const { likedMovies, likeMovie } = useLikedMovies();
   const { data: categoryPreviewData, loading: loadingCategories } =
     useTMDBApi("genre/movie/list");
   const { data: trendingPreviewData, loading: loadingTrending } =
     useTMDBApi("trending/movie/day");
-  const {
-    item: likedMovies,
-    addItem: addLikedMovie,
-    setStorageItem: setLikedMovie,
-  } = useLocalStorage("liked_movies", []);
-
-  const likeMovie = (e, movie) => {
-    e.stopPropagation();
-    const likedMovieIndex = likedMovies.findIndex(
-      (likedMovie) => likedMovie.id === movie.id
-    );
-
-    if (likedMovieIndex !== -1) {
-      const newLikedMovies = likedMovies.filter(
-        (likedMovie) => likedMovie.id !== movie.id
-      );
-      setLikedMovie(newLikedMovies);
-    } else {
-      addLikedMovie(movie);
-    }
-  };
 
   return (
     <>
