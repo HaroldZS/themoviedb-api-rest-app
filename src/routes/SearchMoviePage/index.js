@@ -22,14 +22,18 @@ function SearchMoviePage() {
   useEffect(() => {
     setResults([]);
     setPage(1);
-  }, [query, location.state]);
+  }, [query]);
 
   useEffect(() => {
     if (searchData && searchData.results) {
+      if (page === 1) {
+        setResults([]);
+        setPage(1);
+      }
       setResults((prevResults) => [...prevResults, searchData.results]);
     }
+    // eslint-disable-next-line
   }, [searchData]);
-
 
   const addNextPage = () => {
     setPage(page + 1);

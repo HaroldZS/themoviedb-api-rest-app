@@ -22,7 +22,9 @@ function GenericList({
           likedMovies={likedMovies}
         />
       ))}
-      {page <= maxPage && <Observer callback={addNextPage} />}
+      {!loading && page <= maxPage && movies.length > 0 && (
+        <Observer callback={addNextPage} />
+      )}
     </section>
   );
 }
