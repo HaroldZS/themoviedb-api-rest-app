@@ -1,0 +1,96 @@
+.category-container {
+  width: 45%;
+}
+
+.category-title {
+  margin-bottom: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.category-title::before {
+  content: "••••";
+  color: transparent;
+  background-color: var(--idColor);
+  border-radius: 8px;
+  margin-right: 8px;
+  width: 8px;
+  height: 8px;
+}
+
+#id28 {
+  --idColor: var(--yellow);
+}
+#id12 {
+  --idColor: var(--red);
+}
+#id16 {
+  --idColor: var(--green);
+}
+#id35 {
+  --idColor: var(--lightBlue);
+}
+#id80 {
+  --idColor: var(--darkBlue);
+}
+#id99 {
+  --idColor: var(--purple-dark-1);
+}
+#id18 {
+  --idColor: var(--purple-medium-1);
+}
+#id10751 {
+  --idColor: var(--yellow);
+}
+#id14 {
+  --idColor: var(--red);
+}
+#id36 {
+  --idColor: var(--green);
+}
+#id27 {
+  --idColor: var(--lightBlue);
+}
+#id10402 {
+  --idColor: var(--darkBlue);
+}
+#id9648 {
+  --idColor: var(--purple-dark-1);
+}
+#id10749 {
+  --idColor: var(--purple-medium-1);
+}
+#id878 {
+  --idColor: var(--yellow);
+}
+#id10770 {
+  --idColor: var(--red);
+}
+#id53 {
+  --idColor: var(--green);
+}
+#id10752 {
+  --idColor: var(--lightBlue);
+}
+#id37 {
+  --idColor: var(--darkBlue);
+}
+
+.category-container--loading {
+  background: var(--purple-light-2);
+  border-radius: 8px;
+  height: 25px;
+  min-height: 25px;
+  max-height: 25px;
+  width: 150px;
+  min-width: 150px;
+  max-width: 150px;
+  margin-bottom: 15px;
+  animation: loading-skeleton infinite 1.5s;
+}
+
+.category-container--loading:nth-child(2) {
+  animation-delay: 0.2s;
+}

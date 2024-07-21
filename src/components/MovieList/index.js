@@ -2,6 +2,7 @@ import React from "react";
 import { useLazyLoading } from "../../hook/useLazyLoading";
 import { useNavigate } from "react-router-dom";
 import { Movie } from "../Movie";
+import "./MovieList.css";
 
 function MovieList({ movies, likeMovie, likedMovies }) {
   const navigate = useNavigate();

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "./CategoryPage.css";
 import { useLikedMovies } from "../../hook/useLikedMovies";
 import { useTMDBApi } from "../../hook/useTMDBApi";
 import { Header } from "../../components/Header";

@@ -1,5 +1,4 @@
 import React from "react";
-import "./TrendsPage.css";
 import { Header } from "../../components/Header";
 import { GenericList } from "../../components/GenericList";
 import { useTMDBApi } from "../../hook/useTMDBApi";

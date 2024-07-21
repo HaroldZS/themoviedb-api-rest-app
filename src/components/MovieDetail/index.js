@@ -10,7 +10,6 @@ function MovieDetail({
   likedMovies,
   categories,
 }) {
-
   return (
     <>
       <section id="movieDetail" className="movieDetail-container">

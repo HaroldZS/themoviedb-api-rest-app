@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "./SearchMoviePage.css";
 import { Header } from "../../components/Header";
 import { useLocation, useSearchParams } from "react-router-dom";
 import { useTMDBApi } from "../../hook/useTMDBApi";

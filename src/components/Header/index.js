@@ -4,7 +4,7 @@ import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
 function Header({ moviePoster = null }) {
   const location = useLocation();
-  const navigate = useNavigate(); // Asegúrate de que useNavigate esté correctamente importado
+  const navigate = useNavigate();
 
   const [searchValue, setSearchValue] = useState("");
   const [searchParams] = useSearchParams();
@@ -37,7 +37,7 @@ function Header({ moviePoster = null }) {
   }, [searchQuery]);
 
   const goBack = () => {
-    navigate(-1); // Esta es la forma correcta de usar navigate para ir hacia atrás
+    navigate(-1);
   };
 
   return (
@@ -56,7 +56,7 @@ function Header({ moviePoster = null }) {
         className={`header-arrow ${isHomePage && "inactive"} ${
           isMovieDetailPage && "header-arrow--white"
         }`}
-        onClick={goBack} // Llama a la función goBack en lugar de navigate(-1)
+        onClick={goBack}
       >
         &lt;
       </span>

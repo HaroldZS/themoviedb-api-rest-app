@@ -6,7 +6,6 @@ import { LikedMovies } from "../../components/LikedMovies";
 import { Footer } from "../../components/Footer";
 import { useTMDBApi } from "../../hook/useTMDBApi";
 import { useLikedMovies } from "../../hook/useLikedMovies";
-import "./HomePage.css";
 
 function HomePage() {
   const { likedMovies, likeMovie } = useLikedMovies();

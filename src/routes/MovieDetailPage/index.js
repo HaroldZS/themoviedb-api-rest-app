@@ -1,5 +1,4 @@
 import React from "react";
-import "./MovieDetailPage.css";
 import { Header } from "../../components/Header";
 import { MovieDetail } from "../../components/MovieDetail";
 import { useParams } from "react-router-dom";

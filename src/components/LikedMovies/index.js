@@ -1,5 +1,4 @@
 import React from "react";
-import "./LikedMovies.css";
 import { MovieList } from "../MovieList";
 
 function LikedMovies({ likeMovie, likedMovies }) {

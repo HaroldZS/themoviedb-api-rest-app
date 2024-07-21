@@ -1,10 +1,10 @@
 import { HashRouter, Route, Routes } from "react-router-dom";
-import { HomePage } from "./routes/HomePage/HomePage";
-import { SearchMoviePage } from "./routes/SearchMoviePage/SearchMoviePage";
-import { MovieDetailPage } from "./routes/MovieDetailPage/MovieDetailPage";
-import { TrendsPage } from "./routes/TrendsPage/TrendsPage";
-import { CategoryPage } from "./routes/CategoryPage/CategoryPage";
-import { NotFoundPage } from "./routes/NotFoundPage/NotFoundPage";
+import { HomePage } from "./routes/HomePage";
+import { SearchMoviePage } from "./routes/SearchMoviePage";
+import { MovieDetailPage } from "./routes/MovieDetailPage";
+import { TrendsPage } from "./routes/TrendsPage";
+import { CategoryPage } from "./routes/CategoryPage";
+import { NotFoundPage } from "./routes/NotFoundPage";
 
 function App() {
   return (
