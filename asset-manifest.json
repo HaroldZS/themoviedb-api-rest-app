@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/HaroldZS/themoviedb-api-rest-app/static/css/main.e1952332.css",
-    "main.js": "/HaroldZS/themoviedb-api-rest-app/static/js/main.81b94056.js",
-    "index.html": "/HaroldZS/themoviedb-api-rest-app/index.html",
-    "main.e1952332.css.map": "/HaroldZS/themoviedb-api-rest-app/static/css/main.e1952332.css.map",
-    "main.81b94056.js.map": "/HaroldZS/themoviedb-api-rest-app/static/js/main.81b94056.js.map"
+    "main.css": "/themoviedb-api-rest-app/static/css/main.e1952332.css",
+    "main.js": "/themoviedb-api-rest-app/static/js/main.81b94056.js",
+    "index.html": "/themoviedb-api-rest-app/index.html",
+    "main.e1952332.css.map": "/themoviedb-api-rest-app/static/css/main.e1952332.css.map",
+    "main.81b94056.js.map": "/themoviedb-api-rest-app/static/js/main.81b94056.js.map"
   },
   "entrypoints": [
     "static/css/main.e1952332.css",
