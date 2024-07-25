@@ -9,7 +9,6 @@ const useLikedMovies = () => {
 
   const likeMovie = (e, movie) => {
     e.stopPropagation();
-    console.log(likedMovies);
     const likedMovieIndex = likedMovies.findIndex(
       (likedMovie) => likedMovie.id === movie.id
     );
