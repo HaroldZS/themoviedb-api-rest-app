@@ -66,7 +66,7 @@ function Header({ moviePoster = null }) {
           !isCategoryOrTrendPage && "inactive"
         }`}
       >
-        {category}
+        {category ? category : "Trends"}
       </h1>
 
       <form
