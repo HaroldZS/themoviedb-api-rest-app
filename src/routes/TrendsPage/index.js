@@ -1,42 +1,41 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Header } from "../../components/Header";
 import { GenericList } from "../../components/GenericList";
 import { useTMDBApi } from "../../hook/useTMDBApi";
-import { useLocalStorage } from "../../hook/useLocalStorage";
+import { useLikedMovies } from "../../hook/useLikedMovies";
 
 function TrendsPage() {
-  const { data: trendingData, loading: loadingTrending } =
-    useTMDBApi("trending/movie/day");
+  const [page, setPage] = useState(1);
+  const [results, setResults] = useState([]);
+  const { likedMovies, likeMovie } = useLikedMovies();
 
   const {
-    item: likedMovies,
-    addItem: addLikedMovie,
-    setStorageItem: setLikedMovie,
-  } = useLocalStorage("liked_movies", []);
+    data: trendingData,
+    loading: loadingTrending,
+    maxPage,
+  } = useTMDBApi("trending/movie/day", { page });
 
-  const likeMovie = (e, movie) => {
-    e.stopPropagation();
-    const likedMovieIndex = likedMovies.findIndex(
-      (likedMovie) => likedMovie.id === movie.id
-    );
-
-    if (likedMovieIndex !== -1) {
-      const newLikedMovies = likedMovies.filter(
-        (likedMovie) => likedMovie.id !== movie.id
-      );
-      setLikedMovie(newLikedMovies);
-    } else {
-      addLikedMovie(movie);
+  useEffect(() => {
+    if (trendingData && trendingData.results) {
+      setResults((prevResults) => [...prevResults, trendingData.results]);
     }
+  }, [trendingData]);
+
+  const addNextPage = () => {
+    setPage((prevPage) => prevPage + 1);
   };
 
   return (
     <>
       <Header />
       <GenericList
-        movies={loadingTrending ? null : trendingData.results}
+        movies={results}
+        loading={loadingTrending}
         likeMovie={likeMovie}
         likedMovies={likedMovies}
+        addNextPage={addNextPage}
+        page={page}
+        maxPage={maxPage}
       />
     </>
   );
